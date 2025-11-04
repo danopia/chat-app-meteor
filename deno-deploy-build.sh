@@ -10,8 +10,6 @@ fi
 HadNoDeps=""
 if ! [ -d node_modules ]
 then
-  find /tmp/build
-  ls /tmp/build/src/package.json
   meteor npm ci
   HadNoDeps="true"
 fi
@@ -25,10 +23,11 @@ meteor build \
 
 mv "$TempDir" ./meteor-build
 
-if [ -z "$HadNoDeps" ]
+if [ "$HadNoDeps" = "true" ]
 then
   rm -rf node_modules
-  rm -rf meteor-build/bundle/programs/server/*/
+  rm -rf .meteor/local
+  rm -rf meteor-build/bundle/programs/server/npm
 fi
 
 find .|grep -v /node_modules/
