@@ -16,7 +16,8 @@ Meteor.startup(async () => {
   // HACK(dan): SyncedCron.start();
 
   // HACK(dan):
-  Meteor.users = new Mongo.Collection('users');
+  Meteor.users ??= new Mongo.Collection('users');
+  Meteor.userId ??= () => 'user123';
 
   // Seeding Db
   const user = await Meteor.users.findOneAsync();
