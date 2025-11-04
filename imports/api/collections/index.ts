@@ -1,6 +1,6 @@
-import { MessageCollection } from './messages';
-import { UnReadMessageCollection } from './unread-message';
-import { NotificationCollection } from './notification';
+import { MessageCollection } from './messages.ts';
+import { UnReadMessageCollection } from './unread-message.ts';
+import { NotificationCollection } from './notification.ts';
 
 
 const Collections = {

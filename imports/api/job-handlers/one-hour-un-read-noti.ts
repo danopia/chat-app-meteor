@@ -1,8 +1,8 @@
 import dayjs from "dayjs";
 // @ts-ignore
-import { SyncedCron } from "meteor/littledata:synced-cron";
-import Collections from "../collections";
-import { NotificationTypes } from "../collections/notification";
+// HACK(dan): import { SyncedCron } from "meteor/littledata:synced-cron";
+import Collections from "../collections/index.ts";
+import { NotificationTypes } from "../collections/notification.ts";
 
 // set 60 for the excercise requirement, but can set = 1 or 2, 3 minutes to easier to testing
 const CONFIG_UNREAD_MESSAGE_IN_MINUTES = 2;
@@ -28,7 +28,7 @@ function checkUnreadForUser(user: Meteor.User) {
     }
   );
 
-  
+
 
   // Check if we have existing notification for this message, we should not add again the notification
   const exitingNotification = existingUnReadMessage && Collections.Notification.findOne({
@@ -59,31 +59,32 @@ function checkUnreadForUser(user: Meteor.User) {
 }
 
 export function initJob() {
-  SyncedCron.add({
-    name: "Run every minute to check any unread message in $CONFIG_UNREAD_MESSAGE_IN_MINUTES minutes and create notifiation",
-    schedule: function (parser) {
-      // parser is a later.parse object
-      return parser.text("every 1 minute");
-    },
-    job: function () {
-      console.log("Start the job check unread message");
-      // Check forever user
-      const users = Meteor.users
-        .find(
-          {},
-          {
-            fields: {
-              id: 1,
-              profile: 1,
-              username: 1,
-            },
-          }
-        )
-        .fetch();
+  // HACK(dan): no-op
+  // SyncedCron.add({
+  //   name: "Run every minute to check any unread message in $CONFIG_UNREAD_MESSAGE_IN_MINUTES minutes and create notifiation",
+  //   schedule: function (parser) {
+  //     // parser is a later.parse object
+  //     return parser.text("every 1 minute");
+  //   },
+  //   job: function () {
+  //     console.log("Start the job check unread message");
+  //     // Check forever user
+  //     const users = Meteor.users
+  //       .find(
+  //         {},
+  //         {
+  //           fields: {
+  //             id: 1,
+  //             profile: 1,
+  //             username: 1,
+  //           },
+  //         }
+  //       )
+  //       .fetch();
 
-      // We can seperate job here, but for this excersice, i will skip it
-      users.forEach((user) => checkUnreadForUser(user));
-      console.log("End the job check unread message");
-    },
-  });
+  //     // We can seperate job here, but for this excersice, i will skip it
+  //     users.forEach((user) => checkUnreadForUser(user));
+  //     console.log("End the job check unread message");
+  //   },
+  // });
 }

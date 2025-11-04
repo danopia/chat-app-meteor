@@ -1,6 +1,6 @@
 import { Mongo } from 'meteor/mongo';
-import { IBaseDocument } from './base';
-import { IMessage } from './messages';
+import { IBaseDocument } from './base.ts';
+import { IMessage } from './messages.ts';
 
 export enum NotificationTypes {
     UNREAD_MESSAGE_1_HOUR = 'UNREAD_MESSAGE_1_HOUR',
@@ -23,6 +23,3 @@ export interface INotification extends IBaseDocument {
 }
 
 export const NotificationCollection = new Mongo.Collection<INotification>('notification');
-
-
-

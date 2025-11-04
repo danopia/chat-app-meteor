@@ -1,9 +1,6 @@
-import * as MongoNpmModule from 'mongodb';
-
-export interface IBaseDocument extends MongoNpmModule.Document {
+export interface IBaseDocument {
+    _id: string;
     createdAt: Date;
     deletedAt: Date;
     modifiedAt: Date;
 }
-
-

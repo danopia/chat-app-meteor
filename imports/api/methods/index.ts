@@ -1,3 +1,2 @@
-import './user.ts';
 import './messsage.ts';
 import './notification.ts';

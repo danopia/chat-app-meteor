@@ -1,25 +1,28 @@
 import { Meteor } from "meteor/meteor";
+import { Mongo } from "meteor/mongo";
+// import { Accounts } from "meteor/accounts-base";
 // @ts-ignore
-import { SyncedCron } from "meteor/littledata:synced-cron";
+// HACK(dan): import { SyncedCron } from "meteor/littledata:synced-cron";
 
-import { initJob } from '../imports/api/job-handlers/one-hour-un-read-noti'
+import { initJob } from '../imports/api/job-handlers/one-hour-un-read-noti.ts'
 
-import "../imports/api/methods";
-import "../imports/api/publications";
+import "../imports/api/methods/index.ts";
+import "../imports/api/publications/index.ts";
 
 
 Meteor.startup(async () => {
 
   initJob();
-  SyncedCron.start();
+  // HACK(dan): SyncedCron.start();
 
-
-
+  // HACK(dan):
+  Meteor.users = new Mongo.Collection('users');
 
   // Seeding Db
-  const user = Meteor.users.findOne();
+  const user = await Meteor.users.findOneAsync();
   if (!user) {
-    Accounts.createUser({
+    const Accounts = null as any;
+    await Accounts?.createUserAsync({
       username: "user1",
       profile: {
         name: "John Doe",
@@ -27,7 +30,7 @@ Meteor.startup(async () => {
       },
       password: "123456",
     });
-    Accounts.createUser({
+    await Accounts?.createUserAsync({
       username: "user2",
       profile: {
         name: "Cris Ronaldo",
@@ -35,7 +38,7 @@ Meteor.startup(async () => {
       },
       password: "123456",
     });
-    Accounts.createUser({
+    await Accounts?.createUserAsync({
       username: "user3",
       profile: {
         name: "Lionel Messi",

@@ -1,3 +1,5 @@
+import { Meteor } from 'meteor/meteor';
+
 Meteor.publish("user:currentUser", function () {
   if (Meteor.userId()) return Meteor.users.find({ _id: this.userId as string });
   return this.ready();

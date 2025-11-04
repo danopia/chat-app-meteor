@@ -1,7 +1,7 @@
 import { Meteor } from "meteor/meteor";
-import Collections from "../collections";
+import Collections from "../collections/index.ts";
 import { check } from "meteor/check";
-import { NotificationTypes } from "../collections/notification";
+import { NotificationTypes } from "../collections/notification.ts";
 
 Meteor.methods({
   notificationSetRead(body: { notiId: string }): void {

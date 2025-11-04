@@ -1,5 +1,5 @@
 import { Mongo } from 'meteor/mongo';
-import { IBaseDocument } from './base';
+import { IBaseDocument } from './base.ts';
 
 export interface IMessage extends IBaseDocument {
     _sid: string;
@@ -10,8 +10,3 @@ export interface IMessage extends IBaseDocument {
 }
 
 export const MessageCollection = new Mongo.Collection<IMessage>('messages');
-
-
-
-
-

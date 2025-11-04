@@ -1,6 +1,6 @@
 import { Mongo } from 'meteor/mongo';
-import { IBaseDocument } from './base';
-import { IMessage } from './messages'
+import { IBaseDocument } from './base.ts';
+import { IMessage } from './messages.ts'
 
 export interface IUnReadMessage extends IBaseDocument {
     _id: string;
@@ -11,6 +11,3 @@ export interface IUnReadMessage extends IBaseDocument {
 }
 
 export const UnReadMessageCollection = new Mongo.Collection<IUnReadMessage>('unread-messsage');
-
-
-

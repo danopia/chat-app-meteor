@@ -1,2 +1,0 @@
-import './messsage';
-import './notification';
