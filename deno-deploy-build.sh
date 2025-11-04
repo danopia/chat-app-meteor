@@ -30,3 +30,7 @@ then
   rm -rf node_modules
   rm -rf meteor-build/bundle/programs/server/*/
 fi
+
+find .|grep -v /node_modules/
+du -sh .
+du -sh * .*
