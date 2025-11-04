@@ -1,0 +1,11 @@
+{
+  "tasks": {
+    "serve": "env DENO_NO_PACKAGE_JSON=1 deno serve --allow-read --allow-env --unstable-kv @danopia/cosmosaur-server/launch ./server/main.ts"
+  },
+  "imports": {
+    "/imports/": "./imports/",
+    "@danopia/cosmosaur-server": "jsr:@danopia/cosmosaur-server@^0.1.4",
+    "dayjs": "npm:dayjs@1.11.9",
+    "meteor/": "jsr:/@danopia/cosmosaur-server/meteor-api/"
+  }
+}
