@@ -10,7 +10,7 @@ fi
 HadNoDeps=""
 if ! [ -d node_modules ]
 then
-  find /tmp
+  find /tmp/build
   ls /tmp/build/src/package.json
   meteor npm ci
   HadNoDeps="true"
